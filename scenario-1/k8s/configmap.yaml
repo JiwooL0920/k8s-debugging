@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: event-processor-config
+  namespace: scenario-1
+data:
+  APP_VERSION: "1.2.0"
+  ENVIRONMENT: "staging"
+  STARTUP_DELAY_SECONDS: "3"
+  LOG_LEVEL: "info"
