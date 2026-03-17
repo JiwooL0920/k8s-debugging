@@ -78,6 +78,13 @@ Create this scenario?
 
 Create all files following formats in [reference/](reference/) folder.
 
+**Important:** After creating `k8s/deployment.yaml` (with bugs), copy it to `k8s/.deployment.yaml.broken`:
+```bash
+cp k8s/deployment.yaml k8s/.deployment.yaml.broken
+```
+
+This backup is used by `make reset` to restore the broken state.
+
 ### Step 7: Update README.md
 
 Add new scenario to the scenarios table in repo root README.md.
