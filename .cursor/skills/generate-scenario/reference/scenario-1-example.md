@@ -42,6 +42,15 @@ The Docker image was built from `app/` and loaded into the Kind cluster as `even
 2. Fix all issues in `k8s/deployment.yaml`
 3. Verify the service is healthy and reachable
 
+## Setup
+
+First, build and deploy the broken scenario:
+
+\`\`\`bash
+make load    # Build image and load into Kind cluster
+make deploy  # Apply all K8s manifests
+\`\`\`
+
 ## Getting Started
 
 \`\`\`bash
@@ -57,11 +66,16 @@ kubectl get endpoints -n scenario-1
 # After making fixes, re-apply
 kubectl apply -f scenario-1/k8s/deployment.yaml
 
+# Check status after each fix
+make status
+
 # Final verification — service should return JSON
-kubectl port-forward svc/event-processor 7070:80 -n scenario-1 &
-curl localhost:7070/
-curl localhost:7070/healthz
-curl localhost:7070/readyz
+make verify
+# Or manually:
+# kubectl port-forward svc/event-processor 7070:80 -n scenario-1 &
+# curl localhost:7070/
+# curl localhost:7070/healthz
+# curl localhost:7070/readyz
 \`\`\`
 
 ## Tips
@@ -94,7 +108,13 @@ scenario-1/
 If you want to start over:
 
 \`\`\`bash
-make reset
+make reset   # Delete namespace, restore broken deployment, redeploy
+\`\`\`
+
+To completely remove the scenario:
+
+\`\`\`bash
+make clean   # Delete the namespace and all resources
 \`\`\`
 ```
 

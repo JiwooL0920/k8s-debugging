@@ -163,6 +163,15 @@ scenario-N/
 2. Fix all issues in `k8s/deployment.yaml`
 3. Verify the service is healthy and reachable
 
+## Setup
+
+First, build and deploy the broken scenario:
+
+\`\`\`bash
+make load    # Build image and load into Kind cluster
+make deploy  # Apply all K8s manifests
+\`\`\`
+
 ## Getting Started
 
 \`\`\`bash
@@ -176,6 +185,9 @@ kubectl get events -n scenario-N --sort-by='.lastTimestamp'
 
 # After making fixes, re-apply
 kubectl apply -f scenario-N/k8s/deployment.yaml
+
+# Check status after each fix
+make status
 
 # Final verification
 make verify
@@ -200,8 +212,16 @@ scenario-N/
 
 ## Resetting the Scenario
 
+If you want to start over:
+
 \`\`\`bash
-make reset
+make reset   # Delete namespace, restore broken deployment, redeploy
+\`\`\`
+
+To completely remove the scenario:
+
+\`\`\`bash
+make clean   # Delete the namespace and all resources
 \`\`\`
 ```
 
