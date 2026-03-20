@@ -37,6 +37,7 @@ A collection of deliberately broken Kubernetes deployments for learners to diagn
 |---|-------|------------|--------------|
 | 1 | Image Pull / Ports / Labels | Beginner | imagePullPolicy, containerPort, label selectors, Service targetPort |
 | 2 | Resource Limits & OOMKilled | Beginner | memory limits, OOMKilled, container command override, readiness probes |
+| 3 | Mixed Debugging — Image, Config, Resources, Probes, Selectors | Intermediate | imagePullPolicy, ConfigMap key refs, OOMKilled, probe paths, Service selectors |
 
 ## Scenario Structure
 
